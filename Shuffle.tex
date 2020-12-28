@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+\usepackage{newcent}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption, float}
+\usepackage{fdsymbol}
+
+
+\oddsidemargin=0.0in
+\evensidemargin=0.0in
+\topmargin= -0.5in
+\textheight=8.75in
+\textwidth=6.5in
+\parindent=25pt
+\parskip=10pt
+\baselineskip=16.5pt
+
+%\nofiles this command will let you run latex without creating .aux,.bbl,etc
+\begin{document}
+\pagestyle{plain}
+
+
+
+\begin{center}
+  Shuffle Cards
+  John Williams\\
+\end{center}
+
+A long time ago,\ myself and two friends were playing around with a deck of cards.  We asked
+the question:  'If you shuffled a deck of cards perfectly,\ how many shuffles would it take to
+get the cards back in the exact same order?'
+
+We defined perfect shuffling as :
+
+\begin{itemize}
+\item[1.]  Split the deck exactly in half.
+\item[2.]  Always start the interleaving with the first half of the split deck.
+\item[3.] Interleave the cards from one half perfectly with the cards from the second half.
+\end{itemize}
+
+For example,\ suppose you have a deck of 4 cards,\ Cards [A$\!\clubsuit$, K$\!\clubsuit$,
+Q$\!\clubsuit$, J$\!\clubsuit$].  Splitting gives two decks of [A$\!\clubsuit$, K$\!\clubsuit$]
+and [Q$\!\clubsuit$, J$\!\clubsuit$].  Shuffling(interleaving) gives a new deck
+[A$\!\clubsuit$, Q$\!\clubsuit$, K$\!\clubsuit$, J$\!\clubsuit$].  Splitting again gives two
+new decks [A$\!\clubsuit$, Q$\!\clubsuit$] and [K$\!\clubsuit$, J$\!\clubsuit$].  Interleaving
+once more gives [A$\!\clubsuit$, K$\!\clubsuit$, Q$\!\clubsuit$, J$\!\clubsuit$] and we are
+back to the original sequence.  Therefore it took 2 shuffles to get back to the original
+sequence.
+
+This example made us realize that we could do the same thing for a 'deck' of any size and ask
+the question : 'How many shuffles does it take to get back the original sequence?'  As an
+aside,\ it was found that decks with odd numbers of cards took the exact same number of
+shuffles as the even length deck just prior to it.  Therefore,\ odd length card decks were not
+evaluated. 
+
+The following selection of plots shows the results for sequences of various lengths.  There are
+some interesting features.  Clearly,\ no deck needs more shuffles then number of values in the
+original deck.  For some decks,\ though,\ the number of shuffles seems remarkably small.  Since
+the splitting and shuffling is in a sense a binary operation(split exactly in half, shuffle
+exactly) it make sense that the decks with powers of 2 length would have shuffle values that
+are those powers of two.  For instance,\ a deck of 256($2^{8}$) cards takes 8 shuffles to get
+back to the original sequence.  However,\ it is surprising that decks of length $2^{n} + 1$
+take exactly $2^{n} + 1$ shuffles,\ but decks of length $2^{n} + 2$ do not take $2^{n} + 2$
+shuffles.
+
+Some other features are indicated on the plots.  Clearly there is a set of shuffles that when
+plotted have shuffles that lie on a line of slope $1/2$ and also a line of slope $1/3$.  
+
+
+
+\end{document}
