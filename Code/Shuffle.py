@@ -171,7 +171,11 @@ def plotShuffle(shuffleSet, outfile) :
   plt.plot([2.0, xmax], [2.0, ymax/3.0], color = 'green', label = 'y = x/3')
   plt.plot([2.0, xmax], [2.0, ymax/4.0], color = 'brown', label = 'y = x/4')
   plt.plot([2.0, xmax], [2.0, ymax/5.0], color = 'orange', label = 'y = x/5')
-  
+  plt.plot([2.0, xmax], [2.0, ymax/6.0], color = 'darkblue', label = 'y = x/6')
+  plt.plot([2.0, xmax], [2.0, ymax/9.0], color = 'gray', label = 'y = x/9')
+  plt.plot([2.0, xmax], [2.0, ymax/10.0], color = 'cyan', label = 'y = x/10')
+  plt.plot([2.0, xmax], [2.0, ymax/12.0], color = 'springgreen', label = 'y = x/12')
+
   plt.plot(x[isPrime == 1], y[isPrime == 1], 'o', color = 'magenta')
   plt.title(titleStr)
   plt.grid('on')
