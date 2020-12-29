@@ -2,6 +2,29 @@
 
 #A program to create a shuffle set.
 
+def primeFactors(n): 
+  import math
+  import numpy as np
+
+  i = 2
+  factors = []
+  while i * i <= n:
+    if n % i:
+      i += 1
+    else:
+      n //= i
+      factors.append(i)
+  #End of while loop
+  
+  if n > 1:
+    factors.append(n)
+    
+  return factors
+
+##################################################################################
+
+##################################################################################
+
 def getArgs(parser) :
  
   #Get the parameters
@@ -36,7 +59,7 @@ def getShuffleSet(maxNumCards) :
     #Create a deck of cards.
     deck = np.arange(1, i + 1)
     numShuffles = getNumShuffles(deck)
-
+    
     shuffleSet[i] = numShuffles
   #End of for loop - for i in range(2, maxNumCards) :
   
@@ -106,18 +129,32 @@ def plotShuffle(shuffleSet, outfile) :
   import matplotlib.pyplot as plt
   from matplotlib.backends.backend_pdf import PdfPages
   import math
-  
+
+
   #Generate arrays from the dictionary.
   #X is an array of even numbers ranging from 2 to 2*len(x).  This is because the odd numbers
   #give the same results as the even numbers.
   x = np.fromiter(shuffleSet.keys(), dtype = int)
   y = np.fromiter(shuffleSet.values(), dtype = int)
-
+  
+  m = len(y)
+  isPrime = np.ones(m)
+  
   #Find maxes and mins.
   xmax = max(x)
   ymax = max(x)
   ymin = min(y)
 
+  
+  for i in range(m) :
+    pf = primeFactors(y[i])
+    if(len(pf) == 1) :
+      pass
+    else :
+      isPrime[i] = 0
+    #end of if-else clause
+  #End of for loop - for i in range(1, m):
+  
   #Generate a title string.
   titleStr = ('Number of Shuffles Needed to Obtain Original Sequence')
 
@@ -130,8 +167,12 @@ def plotShuffle(shuffleSet, outfile) :
   plt.plot(x, y, '.', color = 'black')
   plt.plot([2.0, xmax], [2.0, np.log2(x[-1])], color = 'red', label = r'$y = log_{2}(x)$')
   plt.plot([2.0, xmax], [2.0, ymax], color = 'black', label = 'y = x')
-  plt.plot([2.0, xmax],[2.0, ymax/2.0], color = 'blue', label = 'y = x/2')
+  plt.plot([2.0, xmax], [2.0, ymax/2.0], color = 'blue', label = 'y = x/2')
   plt.plot([2.0, xmax], [2.0, ymax/3.0], color = 'green', label = 'y = x/3')
+  plt.plot([2.0, xmax], [2.0, ymax/4.0], color = 'brown', label = 'y = x/4')
+  plt.plot([2.0, xmax], [2.0, ymax/5.0], color = 'orange', label = 'y = x/5')
+  
+  plt.plot(x[isPrime == 1], y[isPrime == 1], 'o', color = 'magenta')
   plt.title(titleStr)
   plt.grid('on')
   plt.legend(loc = 'upper left')
@@ -154,7 +195,7 @@ def plotShuffle(shuffleSet, outfile) :
 #Gather our code in a main() function.
 def main() :
   import argparse
-  
+
   #Set up the argument parser.
   parser = argparse.ArgumentParser()
 
